@@ -1,0 +1,7 @@
+services:
+  notebooks:
+    image: almondsh/almond
+    ports:
+      - 8888:8888
+    volumes:
+      - ./notebooks:/home/jovyan/work
