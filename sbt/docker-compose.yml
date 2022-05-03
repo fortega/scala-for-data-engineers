@@ -1,0 +1,7 @@
+services:
+  sbt:
+    image: sbt
+    build: ./
+    volumes:
+      - ./:/app
+  
