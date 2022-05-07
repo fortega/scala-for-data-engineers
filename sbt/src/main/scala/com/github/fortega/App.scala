@@ -3,11 +3,15 @@ package com.github.fortega
 import scala.util.Try
 
 object App {
-    def main(cmdArgs: Array[String]): Unit = Try(cmdArgs)
-        .map(cmdArgToConfig)
-
-    def cmdArgToConfig(cmdArgs: Array[String]) = Config(cmdArgs(0), cmdArgs(1))
+    def main(cmdArgs: Array[String]): Unit = {
+        val message = NamedTry("create")("init")
+            .map("length")(_.length)
+            .map("divide"){ i =>
+                val a = 0/(4-i)
+                a
+            }
+        println(message)
+        
+    }
 }
-
-case class Config(input: String, output: String)
 
