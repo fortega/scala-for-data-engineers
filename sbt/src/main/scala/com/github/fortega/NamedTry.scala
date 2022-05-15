@@ -1,6 +1,6 @@
 package com.github.fortega
 
-sealed trait NamedTry[A] {
+sealed trait NamedTry[+A] {
     def map[B](name: String)(f: A => B): NamedTry[B]
 }
 
@@ -11,9 +11,7 @@ object NamedTry {
 }
 
 case class Success[A](value: A) extends NamedTry[A]{
-    def map[B](name: String)(f: A => B) = try Success(f(value)) catch {
-        case e: Throwable => Error[B](name, e)
-    }
+    def map[B](name: String)(f: A => B) = NamedTry(name)(f(value))
 }
 
 case class Error[A](name: String, exception: Throwable) extends NamedTry[A]{
